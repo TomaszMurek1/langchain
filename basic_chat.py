@@ -29,9 +29,10 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-
 chat = ChatOpenAI(model="gpt-3.5-turbo")
-memory = ConversationBufferMemory(input_key="content", memory_key="messages", return_messages=True)
+memory = ConversationBufferMemory(input_key="content",
+                                  memory_key="messages",
+                                  return_messages=True)
 
 prompt = ChatPromptTemplate(
     input_variables=["content", "messages"],
@@ -40,7 +41,6 @@ prompt = ChatPromptTemplate(
         HumanMessagePromptTemplate.from_template("{content}"),
     ],
 )
-
 
 chain = LLMChain(llm=chat, prompt=prompt, memory=memory)
 

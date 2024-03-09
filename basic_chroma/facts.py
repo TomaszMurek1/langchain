@@ -15,17 +15,16 @@ embeddings = OpenAIEmbeddings()
 
 # print(emb)
 
-text_splitter = CharacterTextSplitter(
-    separator="\n", chunk_size=200, chunk_overlap=0
-)
-loader = TextLoader("basic_chroma/facts.txt")
+text_splitter = CharacterTextSplitter(separator="\n",
+                                      chunk_size=200,
+                                      chunk_overlap=0)
+loader = TextLoader("code/basic_chroma/facts.txt")
 docs = loader.load_and_split(text_splitter=text_splitter)
-db = Chroma.from_documents(
-    docs, embedding=embeddings, persist_directory="basic_chroma/emb"
-)
+db = Chroma.from_documents(docs,
+                           embedding=embeddings,
+                           persist_directory="code/basic_chroma/emb")
 results = db.similarity_search_with_score(
-    "What is an interesting fact abaout English language?", k=3
-)
+    "What is an interesting fact abaout English language?", k=3)
 
 for result in results:
     print("\n")

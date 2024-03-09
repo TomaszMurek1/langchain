@@ -42,3 +42,5 @@ Thumbs.db
 /public
 /coverage
 stock_cross_analysis_results.csv
+*.bin
+*.sqlite3
